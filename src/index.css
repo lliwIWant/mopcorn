@@ -1,0 +1,28 @@
+/* 로그 글씨 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Press+Start+2P&display=swap');
+
+*{box-sizing: border-box; color: white;}
+
+body, html{
+  width: 100vw;
+  height: 100vh;
+  background-color: #333a41 !important; 
+}
+
+/* navbar */
+.red{background-color: #E50914 !important;}
+.logo-title{
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 25px !important;
+  font-style: normal;
+  
+  text-shadow: 2px 2px 0px rgba(255, 193, 7, 0.626) ;
+}
+.clickText:hover{color: #ffc107cc !important;}
+.form-control:focus {
+  background-color: #fff;
+  border-color: #ffc107cc !important;
+  outline: 0 !important;
+  box-shadow: 0 0 5px 1px rgba(255, 193, 7, 0.5) !important;
+}
