@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     /* 설계 계획
@@ -35,8 +34,8 @@ function App() {
                 <Route path =":id" element ={<MovieDetail/>}/>
               <Route/>
               
-            </Route>
           </Route>
+        </Route>
 
 
           <Route path="*" element={<NotFoundPage/>}/>
