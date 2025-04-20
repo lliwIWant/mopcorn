@@ -9,11 +9,6 @@
     font-weight: bold;
 }
 
-.movie-slider {
-    display: flex;
-    justify-content: center;
-  }
-
 @media(max-width: 480px){
     .carousel-container{
         height: 330px;
