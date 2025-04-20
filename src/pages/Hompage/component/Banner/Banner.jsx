@@ -4,7 +4,6 @@ import Alert from 'react-bootstrap/Alert';
 import "./Banner.style.css";
 
 const Banner = () => {
-    const [index, setIndex] = useState(0);
     const {data, isLoading, isError, error} = usePopularMoviesQuery();
     console.log("ddd", data?.results?.length);
     

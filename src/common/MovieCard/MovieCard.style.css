@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&family=Pacifico&family=Press+Start+2P&display=swap');
+
+.movie-card{
+    width: 220px;
+    height: 330px;
+    background-size: cover;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 41, 41, 0.9);
+    opacity: 0;
+    transition: all 1s;
+    color: white;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+.overlay:hover{
+    opacity: 1;
+}
+.movie-card:hover{
+    transform: scale(1.3) translateZ(20px);
+    z-index: 2;
+}
+
+.movie-card{
+    font-family: "Bebas Neue", sans-serif;
+}
+.badge-gap{
+    margin: 3px 0;
+    margin-right: 3px;
+    
+    font-size: 10px;
+}
+.text-wrap{
+    padding: 10px;
+}
+.movie-title-font{color: #FFC107;}
+.imdb{
+    width: 13px;
+    margin-right: 3px;
+}
+.upper-color{
+    color: red;
+}
+.under-color{
+    color:green;
+}
