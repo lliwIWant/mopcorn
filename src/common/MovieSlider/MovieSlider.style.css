@@ -4,10 +4,15 @@
 }
 
 .slide-title{
+    margin: 20px 0;
     margin-left: 50px;
     font-weight: bold;
 }
 
+.movie-slider {
+    display: flex;
+    justify-content: center;
+  }
 
 @media(max-width: 480px){
     .carousel-container{

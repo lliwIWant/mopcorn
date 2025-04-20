@@ -3,6 +3,7 @@ import "./MovieSlider.style.css"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import MovieCard from '../MovieCard/MovieCard';
+import { isMobile } from 'react-device-detect';
 
 
 const MovieSlider = ({title, movies, responsive}) => {
@@ -11,8 +12,8 @@ const MovieSlider = ({title, movies, responsive}) => {
         <h3 className='slide-title'>{title}</h3>
         <Carousel
           infinite={true}
-          centerMode={true}
-          itemClass="movie-slide p-1"
+          centerMode={!isMobile}
+          itemClass="movie-slider p-1"
           containerClass="carousel-container"
           responsive={responsive}
             >
