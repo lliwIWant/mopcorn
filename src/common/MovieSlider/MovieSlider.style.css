@@ -1,6 +1,10 @@
 .carousel-container{
     overflow: hidden;
     height: 440px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .slide-title{
@@ -9,10 +13,37 @@
     font-weight: bold;
 }
 
+
+.movie-slider {
+    height: 400px;
+    box-sizing: border-box;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.react-multiple-carousel__arrow--right{
+    right: 0px;
+}
+.react-multiple-carousel__arrow--left{
+    left: 0px;
+}
+
 @media(max-width: 480px){
     .carousel-container{
         height: 330px;
         display: flex;
         justify-content: space-between;
     }
+    .movie-slider {
+        height: 400px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
 }

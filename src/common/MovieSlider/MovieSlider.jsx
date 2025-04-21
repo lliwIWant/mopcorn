@@ -9,17 +9,19 @@ const MovieSlider = ({title, movies, responsive}) => {
   return (
     <div>
         <h3 className='slide-title'>{title}</h3>
-        <Carousel
-          infinite={true}
-          centerMode={true}
-          itemClass="movie-slider p-1"
-          containerClass="carousel-container"
-          responsive={responsive}
-            >
-            {movies.map((movie, index)=>(
-                <MovieCard movie={movie} key={index} />
-            ))}
-        </Carousel>
+        <div className='slider-wrap'>
+          <Carousel
+            infinite={true}
+            // centerMode={true}
+            itemClass="movie-slider p-1"
+            containerClass="carousel-container"
+            responsive={responsive}
+              >
+              {movies.map((movie, index)=>(
+                  <MovieCard movie={movie} key={index} />
+              ))}
+          </Carousel>
+        </div>
     </div>
   )
 }
