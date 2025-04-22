@@ -17,11 +17,19 @@ const MovieCard = ({movie}) => {
     return genreNameList;
   }
   return (
-    <div style={{
-        backgroundImage:"url(https://image.tmdb.org/t/p/w1280"+`${movie.poster_path}`+")"
+      <div
+        style={{
+          backgroundImage: `url(${
+            movie.poster_path
+              ? 'https://image.tmdb.org/t/p/w1280' + movie.poster_path
+              : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'
+          })`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
-        className='movie-card'
-        >
+        className="movie-card"
+      >
        
        <div className='overlay'>
         <div className='text-wrap'>
