@@ -26,7 +26,7 @@ const Detail = ({movie}) => {
                     </div>
                 ))}
             </div>
-            <div className='movie-title-name'>{movie.original_title}</div>
+            <div className='movie-title-name'>{movie.title}</div>
             <div className='movie-tagline'>{movie.tagline}</div>
 
             <div className='evaluation-area'>
@@ -47,6 +47,12 @@ const Detail = ({movie}) => {
                 {movie.overview}
             </div>
             <hr/>
+
+            <div className='mark-line'><div>Budget</div>$ {movie.budget}</div>
+            <div className='mark-line'><div>Revenue</div>$ {movie.revenue}</div>
+            <div className='mark-line'><div>Release Date</div>{movie.release_date}</div>
+            <div className='mark-line'><div>Run time</div>{movie.runtime}분</div>
+
         </div>
     </div>
   )

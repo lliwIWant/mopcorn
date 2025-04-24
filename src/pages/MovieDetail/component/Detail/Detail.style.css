@@ -2,8 +2,7 @@
 .contents> *{font-family:  "Bebas Neue", sans-serif;}
 
 .detail-poster{
-    width: 400px;
-    height: 607px;
+    width: 355px;
     background-size: cover;
     transition: 0.5s;
 }
@@ -80,4 +79,15 @@
 .movie-info{
     font-family: "DM Serif Display", serif; 
     font-style: italic;
+}
+.mark-line{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.mark-line>div{
+    padding: 5px 30px;
+    background-color: #EDB611;
+    border-radius: 50px;
+    margin-right: 10px;
 }

@@ -4,6 +4,8 @@ import { useMovieDetail } from '../../hooks/useMovieDetail';
 import { Alert } from 'react-bootstrap';
 import MovieBanner from './component/MovieBanner/MovieBanner';
 import Detail from './component/Detail/Detail';
+import RelatedMovie from './component/RelatedMovie/RelatedMovie';
+
 const MovieDetail = () => {
 
   const {id} = useParams();
@@ -22,6 +24,7 @@ const MovieDetail = () => {
     <div>
       <MovieBanner data={data}/>
       <Detail movie={data}/>
+      <RelatedMovie/>
     </div>
   )
 }
