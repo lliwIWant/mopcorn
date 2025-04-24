@@ -30,11 +30,9 @@ function App() {
               {/* Homepage */}
               <Route index element={<Homepage/>}/>
               {/* Movie */}
-              <Route path="movies" element={<Movies/>}>
-                <Route path =":id" element ={<MovieDetail/>}/>
-              <Route/>
+              <Route path="movies" element={<Movies/>}/>
+              <Route path ="movies/:id" element ={<MovieDetail/>}/>
               
-          </Route>
         </Route>
 
 

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Oswald:wght@343&family=Pacifico&family=Press+Start+2P&display=swap');
+.contents> *{font-family:  "Bebas Neue", sans-serif;}
+
+.detail-poster{
+    width: 400px;
+    height: 607px;
+    background-size: cover;
+    transition: 0.5s;
+}
+
+.detail-wrap{
+    width: 100%;
+
+    /* padding: 10px;
+    
+    border: 2px solid red;
+    border-radius: 10px; */
+}
+.genres{
+    display: flex;
+}
+.genre{
+    padding: 5px 10px;
+    margin-right:  5px;
+    background-color: #EDB611;
+    border-radius: 50px;
+    font-weight: bold;
+}
+.detail-wrap{
+    display: flex;
+    justify-content: center;
+}
+.contents{
+    width: 600px;
+    padding: 0 40px;
+}
+.movie-title-name{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 50px;
+
+    margin: 20px 0 0;
+}
+.movie-tagline{
+    font-family: "DM Serif Display", serif; 
+    font-size: 25px;
+    font-weight: normal;
+    font-style: italic;
+    font-weight: 100;
+    color: #EDB611;
+}
+.imdb-detail{
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 10px;
+}
+.evaluation-area{
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+.popular{
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.age{
+    font-size: 20px;
+    margin: 0 10px;
+}
+.upper{
+    color: red;
+}
+.under{
+    color: green;
+}
+.movie-info{
+    font-family: "DM Serif Display", serif; 
+    font-style: italic;
+}
