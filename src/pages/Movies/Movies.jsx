@@ -5,6 +5,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard'
 import ReactPaginate from 'react-paginate';
 import '../Movies/Movies.style.css'
+import DropdownSearch from './component/Dropdown/DropdownSearch';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useDiscoverMovies } from '../../hooks/useDiscoverMovies';
 
 // 경로 2가지
 // nav바에서 클릭해서 온경우 => popularMovie 보여주기
@@ -18,56 +21,108 @@ import '../Movies/Movies.style.css'
 
 const Movies = () => {
   const [query, setQuery] = useSearchParams();
-  const [page, setPage] = useState(1);
   const keyword = query.get('q');
-  const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page });
-  
+
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("popularity.desc");
+  const [genreId, setGenreId] = useState(null);
+
   useEffect(() => {
     setPage(1);
   }, [keyword]);
+
+  useEffect(() => {
+    if (keyword) {
+      setQuery({ q: keyword, page: page.toString() });
+    } else {
+      setQuery({ page: page.toString() });
+    }
+  }, [page, keyword, setQuery]);
+
+  const { data, isLoading, isError, error } = keyword
+    ? useSearchMovieQuery({ keyword, page })
+    : useDiscoverMovies({ page, sort, genreId });
+
+
+    const filteredResults = React.useMemo(() => {
+      if (!data?.results) return [];
+      let results = [...data.results];
   
+      if (genreId) {
+        results = results.filter(movie => movie.genre_ids.includes(genreId));
+      }
+  
+      if (sort === "popularity.desc") {
+        results.sort((a, b) => b.popularity - a.popularity);
+      } else if (sort === "popularity.asc") {
+        results.sort((a, b) => a.popularity - b.popularity);
+      }
+  
+      return results;
+    }, [data, genreId, sort]);
+    
+
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
-  }
-  // useEffect(() => {
-  //   // 페이지 값이 변경될 때마다 URL에 반영
-  //   setQuery({ q: keyword, page: page.toString() });
-  // }, [page, keyword, setQuery]);
+  };
+
+  const handleGenreSelect = (genreId) => {
+    setGenreId(genreId);
+    setPage(1); // 장르 변경 시 첫 페이지로
+  };
+
+  const handleSortChange = (sortKey) => {
+    setSort(sortKey);
+    setPage(1); // 정렬 변경 시 첫 페이지로
+  };
+
   if (isLoading) {
     return <h1>Loading...</h1>
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>
   }
-
+  const results = keyword ? filteredResults : data?.results;
   return (
     <Container>
       <Row>
-        {/* <Col lg={4} xs={12}>
-          {""}
-          필터터
-          {""}
-        </Col> */}
+        <Col lg={5} xs={12} >
+          <div className='drop-area'>
+            <Dropdown>
+              <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                정렬 기준
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => handleSortChange("popularity.desc")}>인기 많은 순</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("popularity.asc")}>인기 적은 순</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <DropdownSearch title={"장르별 검색"} onSelectGenre={handleGenreSelect} />
+          </div>
+
+        </Col>
         <Col lg={20} xs={12}>
-          <Row>
-            {data?.results && data.results.length > 0 ? (
-              data.results.map((movie, index) => (
-                <Col key={index} lg={3} xs={12} style={{ marginTop: '30px', marginBottom: '30px' }}>
+          <Row className='movie-card-search-list'>
+            {results?.length > 0 ? ( 
+              results.map((movie, index) => (
+                <Col className="col-movie-card-search"key={index} lg={3} xs={10} style={{ marginTop: '30px', marginBottom: '30px' }}>
                   <MovieCard movie={movie} />
                 </Col>
               ))
-
             ) : (
-              <div className='noMovies'>검색하신 영화가 존재하지 않습니다.😢</div>
+              <div className='noMovies'>검색하신 영화가 존재하지 않습니다.😢</div>  // 수정된 부분: 검색 결과가 없을 경우 메시지 표시
             )}
           </Row>
-          {data?.results && data.results.length > 0 ? (
+
+          {data?.results?.length > 0 && (
             <ReactPaginate
               nextLabel=">"
               onPageChange={handlePageClick}
               pageRangeDisplayed={10}
               marginPagesDisplayed={0}
-              pageCount={data?.total_pages} // 전체 페이지가 몇개인가
+              pageCount={data?.total_pages}
               previousLabel="<"
               pageClassName="page-item"
               pageLinkClassName="page-link"
@@ -79,11 +134,11 @@ const Movies = () => {
               breakClassName="page-item"
               breakLinkClassName="page-link"
               containerClassName="pagination"
-              activeClassName="active"
               renderOnZeroPageCount={null}
-              forcePage={page - 1}
+              activeClassName="active"
+              forcePage={page - 1} 
             />
-          ) : ('')}
+          )}
         </Col>
       </Row>
     </Container>

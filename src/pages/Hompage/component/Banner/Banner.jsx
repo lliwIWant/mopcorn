@@ -2,11 +2,16 @@ import React, {useState, useEffect} from 'react'
 import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies'
 import Alert from 'react-bootstrap/Alert';
 import "./Banner.style.css";
+import Modal from '../../../../common/Modal/Modal';
 
 const Banner = () => {
     const {data, isLoading, isError, error} = usePopularMoviesQuery();
-    console.log("ddd", data?.results?.length);
-    
+    console.log("banner", data);
+      const [modal, setModal] =useState(false);
+      const openModal = ()=>{
+        console.log("open")
+        setModal(true);
+      }
     if(isLoading){
         <h1>Loading...</h1>
     }
@@ -36,7 +41,11 @@ const Banner = () => {
                             animationDelay: '0.3s',
                             animationFillMode: 'forwards'
             }}>{data?.results[0].overview}</p>
+            <button className='video-btn' onClick={openModal}>▶재생</button>
          </div>
+         {modal&&(
+          <Modal setModal={setModal} id={data?.results[0].id} />
+        )}
      </div>
   )
 }
